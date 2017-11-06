@@ -12,7 +12,11 @@ class ImagePostsController < ApplicationController
   end
 
   def show
-    @image = ImagePost.find(params[:id])
+    if params[:id]
+      @images = [ImagePost.find(params[:id])]
+    else
+      @images = current_user.image_posts.all
+    end
   end
 
   def new

@@ -1,1 +1,6 @@
-<%= image_tag(@image.img.url(:medium))%>
+<% @images.each do |x| %>
+
+	<br><br>
+	<%= image_tag(x.img.url(:medium)) %>
+
+<% end %>

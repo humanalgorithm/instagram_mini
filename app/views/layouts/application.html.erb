@@ -9,7 +9,7 @@
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 		<meta name="description" content="">
 		<meta name="author" content="">
 
@@ -61,22 +61,27 @@
 				</div>
 			</div>
 		</nav>
-
-
+		
 		<header class="masthead">
+			<br><br>
 			<div class="container h-100">
+				
 				<div class="row h-100">
 					<div class="col-lg-7 my-auto">
-							<% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
-         <% end %>
-						<%= yield %>
+                 <% flash.each do |key, value| %>
+						<div class="alert alert-<%= key %>">
+							<%= value %>
+						</div>
+						<% end %>
 					</div>
-
+				</div>
+			<div class="row h-100">
+					<div class="col-lg-7 my-auto">
+					<%= yield %>
+					</div>
 				</div>
 			</div>
 		</header>
-
 		<footer>
 			<div class="container">
 				<p>
