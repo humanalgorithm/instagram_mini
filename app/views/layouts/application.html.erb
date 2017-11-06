@@ -1,14 +1,110 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>InstagramMini</title>
-    <%= csrf_meta_tags %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<title>InstagramMini</title>
+		<%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <body>
-    <%= yield %>
-  </body>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>New Age - Start Bootstrap Theme</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+		<!-- Custom fonts for this template -->
+		<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+		<!-- Plugin CSS -->
+		<link rel="stylesheet" href="/device-mockups/device-mockups.css">
+
+		<!-- Custom styles for this template -->
+		<link href="/css/new-age.css" rel="stylesheet">
+		<link rel="stylesheet" href="/css/custom.css">
+	</head>
+
+	<body id="page-top">
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+			<div class="container">
+				<%= link_to "Instagram Mini", root_path, class: "navbar-brand js-scroll-trigger"%>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+					Menu
+					<i class="fa fa-bars"></i>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<% if !user_signed_in? %>
+						<li class='nav-item'>
+							<%= link_to "Sign in", new_user_session_path, class: "nav-link js-scroll-trigger" %>
+						</li>
+						<li class='nav-item'>
+							<%= link_to "Sign Up", new_user_registration_path, class: "nav-link js-scroll-trigger"%>
+						</li>
+						<% else %>
+						<li class='nav-item'>
+							<%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "nav-link js-scroll-trigger" %>
+						</li>
+						<% end %>
+						<li class="nav-item"></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<header class="masthead">
+			<div class="container h-100">
+				<div class="row h-100">
+					<div class="col-lg-7 my-auto">
+							<% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+         <% end %>
+						<%= yield %>
+					</div>
+
+				</div>
+			</div>
+		</header>
+
+		<footer>
+			<div class="container">
+				<p>
+					&copy; 2017 HumanAlgorithm.
+				</p>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a href="#">Privacy</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="#">Terms</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="#">FAQ</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="/vendor/jquery/jquery.js"></script>
+		<script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+
+		<!-- Plugin JavaScript -->
+		<script src="/vendor/jquery-easing/jquery.easing.js"></script>
+
+		<!-- Custom scripts for this template -->
+		<script src="/js/new-age.js"></script>
+
+	</body>
 </html>
