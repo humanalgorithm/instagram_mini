@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   root to: "home#index"
   devise_for :users, :paths => 'users' 
   #do
-  resource :user do
-   resource :image_posts
-  end
   
-  match '/user/image_posts/:id' => 'image_posts#show', via: [:get, :post], as: :view_image
+  match '/user/:user_id/image_posts/new' => 'image_posts#new', via: [:get], as: :new_image
+  match '/user/:user_id/image_posts/' => 'image_posts#create', via: [:post], as: :create_image
+    match '/user/:user_id/image_posts/' => 'image_posts#show', via: [:get], as: :view_images
+  match '/user/:user_id/image_posts/:image_id' => 'image_posts#show', via: [:get, :post], as: :view_image
+  match '/user/:user_id/image_posts/:image_id' => 'image_posts#destroy', via: [:delete], as: :delete_image
+  
+  
 end

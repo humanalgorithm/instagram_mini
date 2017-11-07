@@ -18,5 +18,7 @@ module InstagramMini
     #Paperclip.options[:command_path] = "/c/windows/system32/convert"
     
     #Paperclip.options[:command_path] = "C:\Program Files (x86)\GnuWin32\bin"
+    
+    config.assets.version = '1.01020'
   end
 end

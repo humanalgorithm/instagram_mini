@@ -1,0 +1,82 @@
+.field{
+	color: rgb(0,0,0) 
+}
+
+.actions{
+   color: rgb(0,0,0) 
+}
+
+.actions a{
+   color: rgb(0,0,0) 
+}
+
+.width-100{
+	width:40vw;
+	height: 10vh;
+}
+#img_upload input{
+  display: contents;
+}
+
+
+.form-container-outer{
+border-radius: 25px;
+background: #73AD21;
+text-align:center;
+height:60vh;	
+background-color: white;
+margin-top: 25%;
+}
+
+.form-container-outer-img{
+	border-radius: 25px;
+	background: #73AD21;
+	text-align:center;
+	height: 51vh;
+	background-color: white;
+	margin-top: 25%;
+}
+
+.form-container-inner-img{
+	padding-top: 10%;
+	display:inline-block;
+}
+
+.image-description-box{
+	background-color: white;
+	 color: black; 
+	 border-radius: 25px;
+	 margin-top:1%; 
+	 width: 100%;
+	 padding-left: 10%; 
+	 padding-right: 10%; 
+	 text-align: center;
+}
+
+.margin-top-50{
+	margin-top: 50%;
+}
+.margin-top-40{
+	margin-top: 40%;
+}
+.margin-top-25{
+	margin-top: 25%;
+}
+
+
+.form-container-inner {
+	padding-top: 10%;
+	display:inline-block;
+}
+
+#upload-img{
+	width: 20vw;
+}
+
+.actions a {
+	color: rgb(0,0,0) !important;
+}
+
+.form-container-inner h2{
+	color: black
+}

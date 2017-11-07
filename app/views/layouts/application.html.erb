@@ -30,7 +30,6 @@
 
 		<!-- Custom styles for this template -->
 		<link href="/css/new-age.css" rel="stylesheet">
-		<link rel="stylesheet" href="/css/custom.css">
 	</head>
 
 	<body id="page-top">
@@ -61,23 +60,22 @@
 				</div>
 			</div>
 		</nav>
-		
+
 		<header class="masthead">
-			<br><br>
+			<br> <br>
 			<div class="container h-100">
-				
 				<div class="row h-100">
 					<div class="col-lg-7 my-auto">
-                 <% flash.each do |key, value| %>
+						<% flash.each do |key, value| %>
 						<div class="alert alert-<%= key %>">
 							<%= value %>
 						</div>
 						<% end %>
 					</div>
 				</div>
-			<div class="row h-100">
+				<div class="row h-100">
 					<div class="col-lg-7 my-auto">
-					<%= yield %>
+						<%= yield %>
 					</div>
 				</div>
 			</div>
