@@ -1,13 +1,49 @@
-
-<%= link_to "Upload a new image", new_image_path(:user_id => current_user.id)%>
-
-<% @images.each do |x| %>
+<% @images.each do |image| %>
 	<br><br>
-	<a href="<%= view_image_path(:user_id=>current_user.id, :image_id => x.id) %>">
-	<%= image_tag(x.img.url(:medium)) %>
+	<a href="<%= view_image_path(:user_id=> image.user.id, :image_id => image.id) %>">
+	<%= image_tag(image.img.url(:medium)) %>
 	</a>
-    	<br> 
-      <div class="image-description-box"> <%= x.description %></div>
-      <a data-confirm="Are you sure?" data-method="delete" href="<%= delete_image_path(:user_id => current_user.id, :image_id => x.id) %>" rel="nofollow">Delete</a>
-      
+    <br> 
+       
+    <% if current_user and current_user.id == image.user.id %>
+      <div class="image-description-box"> <%= image.description %></div>
+      <a data-confirm="Are you sure?" data-method="delete" href="<%= delete_image_path(:user_id => current_user.id, :image_id => image.id) %>" rel="nofollow">Delete Image</a>
+    <% end %>	
+  <div class="container">
+	<% image.comments.each do |comment| %>
+
+<div class="row">
+<div class="col-sm-1">
+<div class="thumbnail">
+<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_1x.png">
+</div><!-- /thumbnail -->
+</div><!-- /col-sm-1 -->
+
+<div class="col-sm-9">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>  <%= comment.image_post.user.email %></strong> <span class="text-muted">commented 5 days ago</span>
+</div>
+<div class="panel-body">
+ <%= comment.text %>
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+</div>
+ <br>
+    <% end %>  
+   </div><!-- /container -->	  
+	<%= form_for image.comments.build, url: add_comment_path(:user_id => current_user.id, :image_id =>image.id) do |ff| %> 
+	 <div class="field">
+	   <%= ff.label :text %><br />
+	   <%= ff.text_field :text %>
+	 </div>
+	 
+	 <div class="actions">
+	   <%= ff.submit %>
+	 </div>
+	<% end %> 
+	 
 <% end %>
+
+

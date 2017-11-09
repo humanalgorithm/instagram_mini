@@ -9,5 +9,8 @@ class ImagePost < ApplicationRecord
   validates_attachment_content_type :img,  content_type: /\Aimage\/.*\z/
   
   belongs_to :user
+  has_many :comments
+  accepts_nested_attributes_for :comments
+  
 end
  

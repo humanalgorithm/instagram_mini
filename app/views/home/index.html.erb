@@ -11,3 +11,9 @@
 		<h2> Welcome to the mini instagram page</h2>
 	</div>
 <% end %>
+    <br><br>
+    <h3>Current users</h3>
+	<% User.all.each do |user| %>
+	<a href="<%= view_images_path(user.id)%>"><%= user.email %> </a>
+	<br>
+	<% end %>

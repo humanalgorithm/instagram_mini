@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107020323) do
+ActiveRecord::Schema.define(version: 20171107045039) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text    "text"
+    t.integer "image_post_id"
+  end
 
   create_table "image_posts", force: :cascade do |t|
     t.string   "img_file_name"

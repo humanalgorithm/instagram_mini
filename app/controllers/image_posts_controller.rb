@@ -15,7 +15,8 @@ class ImagePostsController < ApplicationController
     if params[:image_id]
       @images = [ImagePost.find(params[:image_id])]
     else
-      @images = current_user.image_posts.all
+      @user = User.find(params[:user_id])
+      @images = @user.image_posts.all
     end
   end
 
