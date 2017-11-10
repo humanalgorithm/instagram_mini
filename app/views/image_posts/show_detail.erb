@@ -26,7 +26,7 @@
 <div class="col-sm-9">
 <div class="panel panel-default">
 <div class="panel-heading">
-<strong>  <%= comment.user.email %></strong> <span class="text-muted">commented 5 days ago</span>
+<strong>  <%= comment.user.email %></strong> <span class="text-muted"><%= time_ago_in_words(comment.created_at) unless comment.created_at.blank?%></span>
 </div>
 <div class="panel-body">
  <%= comment.text %>
@@ -44,8 +44,9 @@
 		<br>
 	   <%= ff.text_area :text, class: "width-27vw"%>
 	 </div>
-	 <div class="actions">      
+	 <div class="width-27vw">      
 	   <%= ff.submit "Add comment"%>
 	 </div>
 	<% end %> 
 <% end %>
+<br>

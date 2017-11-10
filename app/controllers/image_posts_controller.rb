@@ -20,7 +20,6 @@ class ImagePostsController < ApplicationController
     end
   end
   
-
   def show
     if params[:image_id]
       @images = [ImagePost.find(params[:image_id])]
