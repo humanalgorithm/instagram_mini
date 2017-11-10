@@ -1,0 +1,51 @@
+
+
+  <br><br>
+	<%= image_tag(@image.img.url(:medium)) %>
+    <br> 
+    <% if current_user and current_user.id == @image.user.id %>
+      <a data-confirm="Are you sure?" data-method="delete" href="<%= delete_image_path(:user_id => current_user.id, :image_id => @image.id) %>" rel="nofollow">Delete Image</a>
+    <% end %>	
+   <br>
+   <div class="image-description-box"> <%= @image.description %></div>
+ <br>
+
+
+
+
+ <div class="container">
+<% @image.comments.each do |comment| %>
+
+<div class="row">
+<div class="col-sm-1">
+<div class="thumbnail">
+<img class="img-responsive user-photo" src="<%= comment.user.avatar.url(:thumb)%>">
+</div><!-- /thumbnail -->
+</div><!-- /col-sm-1 -->
+
+<div class="col-sm-9">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>  <%= comment.user.email %></strong> <span class="text-muted">commented 5 days ago</span>
+</div>
+<div class="panel-body">
+ <%= comment.text %>
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+</div>
+ <br>
+    <% end %>  
+</div><!-- /container -->	  
+
+ <% if current_user %>
+	<%= form_for @image.comments.build, url: add_comment_path(:user_id => @image.user.id, :image_id =>@image.id) do |ff| %> 
+	 <div class="field">
+		<br>
+	   <%= ff.text_area :text, class: "width-27vw"%>
+	 </div>
+	 <div class="actions">      
+	   <%= ff.submit "Add comment"%>
+	 </div>
+	<% end %> 
+<% end %>

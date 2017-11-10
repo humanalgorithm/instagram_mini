@@ -1,9 +1,9 @@
+<%= devise_error_messages! %>
 <div class="form-container-outer">
 
 	<div class="form-container-inner">
 		<h2>Sign up</h2>
-		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-		<%= devise_error_messages! %>
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true })  do |f| %>
 
 		<div class="field">
 			<%= f.label :email %>
@@ -11,12 +11,6 @@
 			<%= f.email_field :email, autofocus: true %>
 		</div>
 		
-		<div class="field">
-			<%= f.label :username %>
-			<br />
-			<%= f.text_field :username, autofocus: true %>
-		</div>
-
 		<div class="field">
 			<%= f.label :password %>
 			<% if @minimum_password_length %>
@@ -31,12 +25,16 @@
 			<br />
 			<%= f.password_field :password_confirmation, autocomplete: "off" %>
 		</div>
+		
+		<div class="field">
+			<%= f.label :user_image %>
+			<br>
+			<%= f.file_field :avatar%>
+		</div>
 		<br>
 		<div class="actions">
 			<%= f.submit "Sign up" %>
 		</div>
 		<% end %>
-		
-		<%= render "devise/shared/links"%>
 	</div>
 </div>

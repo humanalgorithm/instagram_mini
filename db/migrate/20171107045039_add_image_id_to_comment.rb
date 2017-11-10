@@ -3,5 +3,3 @@ class AddImageIdToComment < ActiveRecord::Migration[5.0]
       add_column :comments, :image_post_id, :integer
   end
 end
-
-

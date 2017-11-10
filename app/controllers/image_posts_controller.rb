@@ -4,12 +4,22 @@ class ImagePostsController < ApplicationController
 
     if @image.save
       flash[:success] = "Success!"
-      redirect_to view_image_path(current_user.id, @image.id)
+      redirect_to view_image_detail_path(current_user.id, @image.id)
     else
       flash[:error] = @image.errors.full_messages
       redirect_to new_image_path(current_user.id)
     end
   end
+
+
+  def show_detail
+    if params[:image_id]
+      @image = ImagePost.find(params[:image_id])
+    else
+      redirect_to view_image_detail_path(:user_id, :image_id )
+    end
+  end
+  
 
   def show
     if params[:image_id]
@@ -25,7 +35,6 @@ class ImagePostsController < ApplicationController
   end
 
   def destroy
-    puts "we are in the destroy path"
     @image = ImagePost.find(params[:image_id])
     if @image.destroy
       flash[:success] = "Image was deleted"
