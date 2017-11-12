@@ -1,16 +1,14 @@
+ <h4>Logged in as: <%= current_user.email%> </h4>
+<%= link_to "Upload a new image", new_image_path(:user_id => current_user.id)%>
+<br><br>
 <% @images.each do |image| %>
-	<br><br>
+	<br>
 	<a href="<%= view_image_detail_path(:user_id=> image.user.id, :image_id => image.id) %>">
 	<%= image_tag(image.img.url(:medium)) %>
 	</a>
-    <br> 
-    <% if current_user and current_user.id == image.user.id %>
-      <a data-confirm="Are you sure?" data-method="delete" href="<%= delete_image_path(:user_id => current_user.id, :image_id => image.id) %>" rel="nofollow">Delete Image</a>
-    <% end %>	
     <br>
     <div class="image-description-box"> <%= image.description %></div>
-   
- <br>
+	 <br>
 
 <% end %>
 
