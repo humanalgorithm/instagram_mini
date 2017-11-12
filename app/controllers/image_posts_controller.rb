@@ -1,4 +1,6 @@
 class ImagePostsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def create
     @image = current_user.image_posts.build(permit_image_post)
 
@@ -11,13 +13,12 @@ class ImagePostsController < ApplicationController
     end
   end
 
-
   def show_detail
-    if params[:image_id]
-      @image = ImagePost.find(params[:image_id])
-    else
-      redirect_to view_image_detail_path(:user_id, :image_id )
+    @image = ImagePost.find(params[:image_id])
+    if not @image
+      redirect_to view_images_path(:user_id)
     end
+    
   end
   
   def update_description

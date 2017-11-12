@@ -14,5 +14,8 @@ Rails.application.routes.draw do
   
   match '/user/:user_id/image_posts/:image_id/comment' => 'comments#create', via: [:get, :post], as: :add_comment
   
+  match '/error_404' => 'error#error_404', via: [:all], as: :error_404
+  get '*unmatched_route', to: 'error#error_page_not_exists', via: [:all], as: :error_page_not_exists
+  
   
 end
