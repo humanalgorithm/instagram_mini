@@ -1,17 +1,50 @@
 
+<script type = "text/javascript">
+function editBox (){
+	
+	input_box = "<textarea style='width: 100%;' id='descriptionInput' ><%= @image.description %></textarea>"
+	$("#descriptionBox").html(input_box);
+	
+	updateLink  = "<a href='javascript:void(0);' onclick='submitUpdatedDescription()' id='updateLink'>Update Description</a>"
+	$("#updateDiv").html(updateLink);
+	
+	cancelLink  = "&nbsp;&nbsp;<a href='javascript:void(0);' onclick='cancelEdit()' id='cancelEdit'>Cancel Edit</a>"
+	$("#updateDiv").append(cancelLink);
+}
+
+function submitUpdatedDescription(){
+	descriptionValue = $("#descriptionInput").val()
+    var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
+	
+	authenticityToken = '<input name="authenticity_token" type="hidden" value="'+AUTH_TOKEN +'">'
+	descriptionPath = "<%= update_image_description_path(:user_id => current_user.id, :image_id => @image.id)%>"
+	dynamicForm1 = '<form id="dynamicForm" action="' + descriptionPath + '" '
+	dynamicForm2 = 	'method="post"><input type="hidden" name="description" value="'+ descriptionValue  +'">'
+	dynamicForm3 = authenticityToken  + '</form>';
+	document.body.innerHTML += dynamicForm1 + dynamicForm2 + dynamicForm3
+    document.getElementById("dynamicForm").submit();
+}
+
+function cancelEdit(){
+	$("#updateDiv").html("");
+	$("#descriptionBox").text("<%= @image.description %>");
+}
+
+</script>
 
   <br><br>
 	<%= image_tag(@image.img.url(:medium)) %>
     <br> 
     <% if current_user and current_user.id == @image.user.id %>
       <a data-confirm="Are you sure?" data-method="delete" href="<%= delete_image_path(:user_id => current_user.id, :image_id => @image.id) %>" rel="nofollow">Delete Image</a>
+      &nbsp;&nbsp;<a href="javascript:void(0);" onclick="editBox();">Edit Description </a>
+       <div id="updateDiv">  </div>
     <% end %>	
    <br>
-   <div class="image-description-box"> <%= @image.description %></div>
+   <div class="image-description-box" id="descriptionBox"> <%= @image.description %></div> 
  <br>
 
-
-
+<%= csrf_meta_tags %>
 
  <div class="container">
 <% @image.comments.each do |comment| %>
@@ -41,7 +74,6 @@
  <% if current_user %>
 	<%= form_for @image.comments.build, url: add_comment_path(:user_id => @image.user.id, :image_id =>@image.id) do |ff| %> 
 	 <div class="field">
-		<br>
 	   <%= ff.text_area :text, class: "width-27vw"%>
 	 </div>
 	 <div class="width-27vw">      

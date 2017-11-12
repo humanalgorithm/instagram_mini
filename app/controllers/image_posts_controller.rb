@@ -20,6 +20,16 @@ class ImagePostsController < ApplicationController
     end
   end
   
+  def update_description
+    description = params[:description]
+    @image = ImagePost.find(params[:image_id])
+    @image.description = description
+    @image.save
+    
+    redirect_to view_image_detail_path(:user_id => params[:user_id], :image_id => params[:image_id])
+    
+  end
+  
   def show
     if params[:image_id]
       @images = [ImagePost.find(params[:image_id])]
@@ -44,8 +54,8 @@ class ImagePostsController < ApplicationController
     end
 
   end
+  
   private
-
   def permit_image_post
     params.require(:image_post).permit(:img, :user_id, :description)
   end
