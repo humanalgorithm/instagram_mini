@@ -14,12 +14,10 @@ class ApplicationController < ActionController::Base
   end 
   
   def page_not_exists
-    begin 
-    redirect_to error_page_not_exists_path 
-    rescue Exception => error
-    redirect_to error_404_path
+    if params[:unmatched_route]
+      redirect_to error_404_path
     end
-
+    redirect_to error_404_path(:unmatched_route=>"error")
   end
     
    protected
