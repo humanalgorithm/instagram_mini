@@ -1,0 +1,10 @@
+ <% if current_user %>
+	<%= form_for @image.comments.build, url: add_comment_path(:user_id => @image.user.id, :image_id =>@image.id) do |ff| %> 
+	 <div class="field">
+	   <%= ff.text_area :text, class: "width-27vw"%>
+	 </div>
+	 <div class="width-27vw">      
+	   <%= ff.submit "Add comment"%>
+	 </div>
+	<% end %> 
+<% end %>

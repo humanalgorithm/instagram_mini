@@ -1,0 +1,24 @@
+<div class="container">
+	<% @image.comments.each do |comment| %>
+
+	<div class="row">
+		<div class="col-sm-1">
+			<div class="thumbnail">
+				<img class="img-responsive user-photo" src="<%= comment.user.avatar.url(:thumb)%>">
+			</div><!-- /thumbnail -->
+		</div><!-- /col-sm-1 -->
+
+		<div class="col-sm-9">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong> <%= comment.user.email %></strong><span class="text-muted"><%= time_ago_in_words(comment.created_at) unless comment.created_at.blank?%></span>
+				</div>
+				<div class="panel-body">
+					<%= comment.text %>
+				</div><!-- /panel-body -->
+			</div><!-- /panel panel-default -->
+		</div><!-- /col-sm-5 -->
+	</div>
+	<br>
+	<% end %>
+</div><!-- /container -->

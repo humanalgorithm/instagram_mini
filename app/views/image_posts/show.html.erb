@@ -1,14 +1,5 @@
  <h4>Logged in as: <%= current_user.email%> </h4>
-<%= link_to "Upload a new image", new_image_path(:user_id => current_user.id)%>
+	<%= link_to "Upload a new image", new_image_path(:user_id => current_user.id)%>
+	<%= render partial: 'image_posts/partials/display_list_images' %>
 <br><br>
-<% @images.each do |image| %>
-	<br>
-	<a href="<%= view_image_detail_path(:user_id=> image.user.id, :image_id => image.id) %>">
-	<%= image_tag(image.img.url(:medium)) %>
-	</a>
-    <br>
-    <div class="image-description-box"> <%= image.description %></div>
-	 <br>
-
-<% end %>
 

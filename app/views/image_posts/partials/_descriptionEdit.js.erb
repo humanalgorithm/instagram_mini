@@ -1,0 +1,36 @@
+
+function editBox (){
+	input_box = "<textarea class='width-100' id='descriptionInput' ><%= @image.description %></textarea>"
+	$("#descriptionBox").html(input_box);
+	
+	updateLink  = "<a href='javascript:void(0);' onclick='submitUpdatedDescription()' id='updateLink'>Update Description</a>"
+	$("#updateDiv").html(updateLink);
+	
+	cancelLink  = "&nbsp;&nbsp;<a href='javascript:void(0);' onclick='cancelEdit()' id='cancelEdit'>Cancel Edit</a>"
+	$("#updateDiv").append(cancelLink);
+}
+
+function buildForm(){
+	descriptionValue = $("#descriptionInput").val()
+    var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
+	
+	var update_description_path = "<%= update_image_description_path(:user_id => current_user.id, :image_id => @image.id)%>"
+	var form_open = '<form id ="dynamicForm" action="{}" method="post">'.replace("{}", update_description_path);
+	var description_input = '<input type="hidden" name="description" value="{}">'.replace("{}", descriptionValue)
+	var csrf_token_input = '<input name="authenticity_token" type="hidden" value="{}">'.replace("{}", AUTH_TOKEN)
+	var form_close = '</form>'
+	
+	var full_form = form_open + description_input+ csrf_token_input + form_close
+	return full_form
+}
+
+function submitUpdatedDescription(){
+	form = buildForm()
+	document.body.innerHTML += form
+    document.getElementById("dynamicForm").submit();
+}
+
+function cancelEdit(){
+	$("#updateDiv").html("");
+	$("#descriptionBox").text("<%= @image.description %>");
+}

@@ -23,6 +23,10 @@
 }
 
 
+.width-100{
+	width:100%;
+}
+
 #img_upload input{
   display: contents;
 }
@@ -86,6 +90,11 @@ margin-top: 10%;
 
 .form-container-inner {
 	padding-top: 5%;
+	display:inline-block;
+}
+
+.form-container-inner-sign-in{
+	padding-top: 15%;
 	display:inline-block;
 }
 

@@ -1,0 +1,10 @@
+<% @images.each do |image| %>
+  <br>
+  <a href="<%= view_image_detail_path(:user_id=> image.user.id, :image_id => image.id) %>">
+    <%= image_tag(image.img.url(:medium)) %>
+   </a>
+   <br>
+   <div class="image-description-box"> <%= image.description %></div>
+    <br>
+
+<% end %>
