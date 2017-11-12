@@ -6,18 +6,19 @@ class ApplicationController < ActionController::Base
     
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   rescue_from ActionController::RoutingError, :with => :page_not_exists
-  rescue_from ActionView::Template::Error, :with => :page_not_exists
-  rescue_from ActionController::UrlGenerationError, :with => :page_not_exists
+  rescue_from ActionView::Template::Error, :with => :invalid_url
+  rescue_from ActionController::UrlGenerationError, :with => :invalid_url
   
   def record_not_found
     redirect_to error_404_path
   end 
   
   def page_not_exists
-    if params[:unmatched_route]
-      redirect_to error_404_path
-    end
-    redirect_to error_404_path(:unmatched_route=>"error")
+    redirect_to error_404_path
+  end
+  
+  def invalid_url
+    redirect_to error_invalid_url_path
   end
     
    protected
