@@ -1,6 +1,5 @@
 # Instagram Mini 
-
-![Alt text] (https://github.com/humanalgorithm/instagram_mini/blob/master/public/img/instagrammini-screenshot.png)
+![ScreenShot](https://raw.github.com/humanalgorithm/instagram_mini/master/public/img/instagrammini-screenshot.png)
 
 ## What is it? 
 
