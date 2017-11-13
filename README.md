@@ -1,6 +1,8 @@
 # Instagram Mini 
 ![ScreenShot](https://raw.github.com/humanalgorithm/instagram_mini/master/public/img/instagrammini-screenshot.png)
 
+## Live at http://instagrammini.com
+
 ## What is it? 
 
 Instagram mini is an Instagram clone written in Ruby on Rails that provides many of the same features such as uploading an image, user registration and commenting on photos. 
